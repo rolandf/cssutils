@@ -140,8 +140,8 @@ class Preferences(object):
         self.keepUsedNamespaceRulesOnly = False
         self.lineNumbers = False
         self.lineSeparator = u'\n'
-        self.minimizeColorHash = True
         self.listItemSpacer = u' '
+        self.minimizeColorHash = True
         self.normalizedVarNames = True
         self.omitLastSemicolon = True
         self.omitLeadingZero = False
@@ -167,6 +167,7 @@ class Preferences(object):
         self.lineNumbers = False
         self.lineSeparator = u''
         self.listItemSpacer = u''
+        self.minimizeColorHash = True
         self.omitLastSemicolon = True
         self.omitLeadingZero = True
         self.paranthesisSpacer = u''
@@ -353,10 +354,11 @@ class CSSSerializer(object):
         """
         Short form of hash, e.g. #123 instead of #112233
         """
-        if self.prefs.minimizeColorHash:
-            if len(val) == 7 and val[1] == val[2] and\
-                                 val[3] == val[4] and\
-                                 val[5] == val[6]:
+        if self.prefs.minimizeColorHash and\
+            len(val) == 7 and\
+            val[1] == val[2] and\
+            val[3] == val[4] and\
+            val[5] == val[6]:
                 return u'#%s%s%s' % (val[1], val[3], val[5])
         return val
 

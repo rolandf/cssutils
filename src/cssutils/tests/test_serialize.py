@@ -515,7 +515,7 @@ a, b {}'''
         self.assertEqual(u'@import "x" print,tv;\na,b {}'.encode(), s.cssText)
 
     def test_minimizeColorHash(self):
-        "Preferences.omitLastSemicolon"
+        "Preferences.minimizeColorHash"
         css = 'a { color: #ffffff }'
         s = cssutils.parseString(css)
         self.assertEqual(u'a {\n    color: #fff\n    }'.encode(), s.cssText)
