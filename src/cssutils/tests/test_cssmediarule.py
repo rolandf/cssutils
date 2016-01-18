@@ -199,6 +199,9 @@ class CSSMediaRuleTestCase(test_cssrule.CSSRuleTestCase):
             # WS
             u'@media\n\t\f all\n\t\f {\n\t\f a{ x: 1}\n\t\f }': 
                 u'@media all {\n    a {\n        x: 1\n        }\n    }',
+            # @page rule inside @media
+            u'@media all { @page { margin: 0; } }':
+                u'@media all {\n    @page {\n        margin: 0\n        }\n    }',
             }
         self.do_equal_p(tests)
         self.do_equal_r(tests)
@@ -379,8 +382,6 @@ class CSSMediaRuleTestCase(test_cssrule.CSSRuleTestCase):
                           r.insertRule, importrule, 0)
         self.assertRaises(xml.dom.HierarchyRequestErr,
                           r.insertRule, namespacerule, 0)
-        self.assertRaises(xml.dom.HierarchyRequestErr,
-                          r.insertRule, pagerule, 0)
         self.assertRaises(xml.dom.HierarchyRequestErr,
                           r.insertRule, mediarule, 0)
 
