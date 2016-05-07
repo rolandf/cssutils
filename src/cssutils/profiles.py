@@ -459,7 +459,7 @@ macros[Profiles.CSS_LEVEL_2] = {
     'shape': r'rect\(({w}({length}|auto}){w},){3}{w}({length}|auto){w}\)',
     'counter': r'counter\({w}{ident}{w}(?:,{w}{list-style-type}{w})?\)',
     'identifier': r'{ident}',
-    'family-name': r'{string}|{ident}(\s+{ident})*',
+    'family-name': r'{string}|({ident}(\s+{ident})*)',
     'generic-family': r'serif|sans-serif|cursive|fantasy|monospace',
     'absolute-size': r'(x?x-)?(small|large)|medium',
     'relative-size': r'smaller|larger',
@@ -679,7 +679,7 @@ properties[Profiles.CSS3_COLOR] = {
 # CSS Fonts Module Level 3 http://www.w3.org/TR/css3-fonts/
 macros[Profiles.CSS3_FONTS] = {
     #'family-name': r'{string}|{ident}',
-    'family-name': r'{string}|{ident}(\s+{ident})*',
+    'family-name': r'{string}|({ident}(\s+{ident})*)',
     'font-face-name': 'local\({w}{family-name}{w}\)',
     'font-stretch-names': r'(ultra-condensed|extra-condensed|condensed|semi-condensed|semi-expanded|expanded|extra-expanded|ultra-expanded)',
     'unicode-range': r'[uU]\+[0-9A-Fa-f?]{1,6}(\-[0-9A-Fa-f]{1,6})?'
