@@ -1,5 +1,5 @@
 include examples/*.py
-recursive-include sheets *
+graft src/cssutils/tests/sheets
 include COPYING
 include COPYING.LESSER
 exclude ANN.txt

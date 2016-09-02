@@ -25,6 +25,29 @@ def msg3x(msg):
     return msg
 
 
+def get_resource_filename(resource_name):
+    """Get the resource filename.
+
+    If the module is zipped, the file will be extracted and the temporary name
+    is returned instead.
+    """
+    try:
+        from pkg_resources import resource_filename
+    except ImportError:
+        this_dir = os.path.dirname(__file__)
+        parts = resource_name.split('/')
+        return os.path.normpath(os.path.join(this_dir, '..', *parts))
+    else:
+        return resource_filename('cssutils', resource_name)
+
+
+def get_sheet_filename(sheet_name):
+    """Get the filename for the given sheet."""
+    # Extract all sheets since they might use @import
+    sheet_dir = get_resource_filename('tests/sheets')
+    return os.path.join(sheet_dir, sheet_name)
+
+
 class BaseTestCase(unittest.TestCase):
 
     def _tempSer(self):
