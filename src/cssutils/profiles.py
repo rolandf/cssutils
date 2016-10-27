@@ -7,6 +7,7 @@ __all__ = ['Profiles']
 __docformat__ = 'restructuredtext'
 __version__ = '$Id: cssproperties.py 1116 2008-03-05 13:52:23Z cthedot $'
 
+from cssutils import util
 import re
 
 class NoSuchProfileException(Exception):
@@ -167,7 +168,11 @@ class Profiles(object):
         """Compile all regular expressions into callable objects"""
         for key, value in dictionary.items():
             if not hasattr(value, '__call__'):
-                value = re.compile('^(?:%s)$' % value, re.I).match
+                # Compiling them now will slow down the cssutils import time,
+                # even if cssutils is not needed. We lazily compile them the
+                # first time they're needed.
+                # https://bitbucket.org/cthedot/cssutils/issues/72
+                value = util.LazyRegex('^(?:%s)$' % value, re.I)
             dictionary[key] = value
 
         return dictionary
