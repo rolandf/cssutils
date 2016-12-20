@@ -169,6 +169,19 @@ class Tokenizer(object):
                     match = matcher(text, pos) # if no match try next production
                     if match:
                         found = match.group(0) # needed later for line/col
+                        # The ident regex also matches the beginning of
+                        # functions, but we can't put the function regex before
+                        # the ident regex, as otherwise 'and(' is recognized as
+                        # function (even though it is valid in media queries).
+                        # So we're doing this: if we find an ident, but the next
+                        # character is a open parenthesis, we instead skip and
+                        # let the FUNCTION production take over - except if the
+                        # ident is "and"
+                        if (name == 'IDENT' and
+                                found.lower() != "and" and
+                                match.end(0) < len(text) and
+                                text[match.end(0)] == '('):
+                            continue
                         if fullsheet:
                             # check if found may be completed into a full token
                             if ('INVALID' == name and

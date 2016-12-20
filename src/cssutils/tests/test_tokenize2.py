@@ -56,6 +56,8 @@ class TokenizerTestCase(basetest.BaseTestCase):
             ('S', ' ', 1, 43),
             ('IDENT', '\\7777777', 1, 44)
         ],
+        # Not a function, important for media queries
+        u'and(': [('IDENT', u'and', 1, 1), ('CHAR', u'(', 1, 4)],
 
 
         u'\\1 b': [('IDENT', u'\x01b', 1, 1)],
