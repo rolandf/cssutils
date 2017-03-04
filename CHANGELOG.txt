@@ -33,6 +33,26 @@ Known Issues
 
 Latest Stable Version
 =====================
+
+1.0.2 170304
+
+	- FIXED issue #61: Nesting of `@media` rules
+
+	- FIXED issue #51 and #56: Slow font-family regex
+
+	- FIXED issue #68: failing tests on Python 3
+
+	- FIXED issue #69: our DOM implementation now delegates unsupported methods
+
+	- FIXED issue #72: importing now faster since regexes are no longer pre-cached on import time
+
+Archived Versions
+=================
+
+1.0.1 151008
+
+	- Fixed Python 3.5 compatibility
+
 1.0 131215 (1.0 only cause I was tired of the 0.9.x releases ;)
 
 	- EXPERIMENTAL: Variable references may have a fallback value now (as implemented in Firefox 29). It is available as ``CSSVariable.fallback`` and example are::
@@ -59,9 +79,6 @@ Latest Stable Version
 		 - ``xml.dom.SyntaxErr`` raised instead of ``xml.dom.InvalidCharacterErr`` for an unknown media type
 		 - removed ``handheld`` media type special case (for old Opera).
 
-
-Archived Versions
-=================
 
 0.9.10 130331
     - BUGFIX: False HASH color values like ``#xyz`` were not being handled properly (thanks to Teruaki Koizumi)
