@@ -49,7 +49,7 @@ class ErrorHandlerTestCase(basetest.BaseTestCase):
 
         s = self._setHandler()
         cssutils.log.setLevel(logging.WARNING)
-        cssutils.log.warn('msg', neverraise=True)
+        cssutils.log.warning('msg', neverraise=True)
         self.assertEqual(s.getvalue(), u'WARNING    msg\n')
 
         s = self._setHandler()

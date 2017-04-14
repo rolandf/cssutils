@@ -329,7 +329,7 @@ def resolveImports(sheet, target=None):
                     # nested imports
                     importedSheet = resolveImports(rule.styleSheet)
                 except xml.dom.HierarchyRequestErr, e:
-                    log.warn(u'@import: Cannot resolve target, keeping rule: %s'
+                    log.warning(u'@import: Cannot resolve target, keeping rule: %s'
                              % e, neverraise=True)
                     target.add(rule)
                 else:
@@ -354,7 +354,7 @@ def resolveImports(sheet, target=None):
                                 keepimport = True
                                 break
                         if keepimport:
-                            log.warn(u'Cannot combine imported sheet with'
+                            log.warning(u'Cannot combine imported sheet with'
                                      u' given media as other rules then'
                                      u' comments or stylerules found %r,'
                                      u' keeping %r' % (r,

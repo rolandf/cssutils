@@ -934,7 +934,7 @@ def _readUrl(url, fetcher=None, overrideEncoding=None, parentEncoding=None):
                     decodedCssText = content.decode(encoding if encoding else 'utf-8')
                     
             except UnicodeDecodeError, e:
-                log.warn(e, neverraise=True)
+                log.warning(e, neverraise=True)
                 decodedCssText = None
 
         return encoding, enctype, decodedCssText
